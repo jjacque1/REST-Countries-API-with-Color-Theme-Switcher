@@ -5,7 +5,12 @@ const container = document.getElementById("container")!;
 const regionFilter = document.getElementById("region-filter");
 const searchInput = document.getElementById("search-input");
 
+
+
+
+
 let allCountries: Country[] = [];
+
 
 function createCountryCard(country: Country): HTMLElement {
   const card = document.createElement("div");
@@ -39,13 +44,70 @@ function renderList(countries: Country[]): void {
 }
 
 
+function filterBySearch(countries: Country[], searchValue: string): Country[] {
+  const term = searchValue.toLowerCase().trim();
+
+  if (!term) return countries;
+
+  return countries.filter((country) =>
+    country.name.common.toLowerCase().includes(term)
+  );
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+function filterByRegion(countries: Country[], regionValue: string): Country[] {
+  if (!regionValue) return countries;
+
+  return countries.filter((country) => country.region === regionValue);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+function applyFilters(): void {
+  let filtered = [...allCountries];
+
+  filtered = filterBySearch(filtered, searchInput.value);
+  filtered = filterByRegion(filtered, regionFilter.value);
+
+  renderList(filtered);
+}
+
+
+
+
+
+
+
+
 
 
 
 
 async function renderCountries() {
 
-  const countries = await fetchCountries();
+  const allcountries = await fetchCountries();
+
+  renderList(allCountries);
 
   countries.forEach((country) => {
     const card = createCountryCard(country);
