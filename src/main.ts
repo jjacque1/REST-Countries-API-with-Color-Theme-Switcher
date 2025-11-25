@@ -5,6 +5,8 @@ const container = document.getElementById("container")!;
 const regionFilter = document.getElementById("region-filter");
 const searchInput = document.getElementById("search-input");
 
+let allCountries: Country[] = [];
+
 function createCountryCard(country: Country): HTMLElement {
   const card = document.createElement("div");
 
@@ -22,6 +24,24 @@ function createCountryCard(country: Country): HTMLElement {
 
   return card;
 }
+
+
+
+
+
+function renderList(countries: Country[]): void {
+  container.innerHTML = ""; 
+
+  countries.forEach((country) => {
+    const card = createCountryCard(country);
+    container.appendChild(card);
+  });
+}
+
+
+
+
+
 
 async function renderCountries() {
 
