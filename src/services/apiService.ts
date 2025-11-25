@@ -1,4 +1,5 @@
-import { Country } from "../models/Country";
+import type { Country } from "../models/Country";
+
 
 
 const URL =

@@ -1,6 +1,9 @@
-import { fetchCountries } from "./services/apiService";
-import { Country } from "./models/Country";
+import { fetchCountries } from "./services/apiService.js";   
+import type { Country } from "./models/Country";           
+
 const container = document.getElementById("container")!;
+const regionFilter = document.getElementById("region-filter");
+const searchInput = document.getElementById("search-input");
 
 function createCountryCard(country: Country): HTMLElement {
   const card = document.createElement("div");
