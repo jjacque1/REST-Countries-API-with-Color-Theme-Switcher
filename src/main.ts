@@ -2,8 +2,10 @@ import { fetchCountries } from "./services/apiService.js";
 import type { Country } from "./models/Country";
 
 const container = document.getElementById("container")!;
-const regionFilter = document.getElementById("region-filter");
-const searchInput = document.getElementById("search-input");
+const regionFilter = document.getElementById(
+  "region-filter"
+) as HTMLSelectElement;
+const searchInput = document.getElementById("search-input") as HTMLInputElement;
 
 let allCountries: Country[] = [];
 
@@ -60,7 +62,7 @@ function applyFilters(): void {
 }
 
 async function renderCountries() {
-  const allcountries = await fetchCountries();
+  allCountries = await fetchCountries();
 
   renderList(allCountries);
 

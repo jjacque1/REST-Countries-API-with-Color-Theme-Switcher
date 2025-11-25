@@ -8,7 +8,6 @@
     <!-- Compiled TypeScript -->
     <script type="module" src="./dist/main.js" defer></script>
 
-
     <!-- Styles -->
     <link rel="stylesheet" href="./styles.css" />
     <script
@@ -17,19 +16,13 @@
     ></script>
   </head>
   <body>
-
-
-    <!-- Header Starts here -->
     <header class="header">
       <h1 class="title">Where in the world?</h1>
       <button id="toggle-btn" class="toggle-btn">
         <i class="fa-regular fa-moon"></i> Dark Mode
       </button>
     </header>
- <!-- Header Ends here -->
 
-
-    <!-- Search Input Starts here-->
     <section class="search-filter">
       <div class="input-container">
         <input
@@ -42,26 +35,16 @@
         <i class="fa-solid fa-magnifying-glass"></i>
       </div>
 
-     <!-- Search Input Ends here-->
-      
-     
-     <!-- Filter Starts here-->
-     
-  
-  <select id="region-filter" aria-label="Filter by region">
-    <option class="option"  value="">Filter by Region</option>
-    <option class="option" value="Africa">Africa</option>
-    <option class="option" value="Americas">Americas</option>
-    <option class="option" value="Asia">Asia</option>
-    <option class="option" value="Europe">Europe</option>
-    <option class="option" value="Oceania">Oceania</option>
-  </select>
+      <select id="region-filter" aria-label="Filter by region">
+        <option value="">Filter by Region</option>
+        <option value="Africa">Africa</option>
+        <option value="Americas">Americas</option>
+        <option value="Asia">Asia</option>
+        <option value="Europe">Europe</option>
+        <option value="Oceania">Oceania</option>
+      </select>
+    </section>
 
-<!--Filter Ends here-->
-
-
-<div id="container">
-
-</div>
+    <div id="container"></div>
   </body>
 </html>
