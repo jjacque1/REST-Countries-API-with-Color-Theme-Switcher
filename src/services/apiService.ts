@@ -15,7 +15,7 @@ export async function fetchCountries(): Promise<Country[]> {
 
     const countries: Country[] = await response.json();
 
-    console.log("Fetched countries (raw from API):", countries);
+    console.log("Fetched countries:", countries);
 
     return countries;
   } catch (error) {
