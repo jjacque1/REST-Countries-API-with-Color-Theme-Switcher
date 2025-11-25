@@ -1,16 +1,11 @@
-import { fetchCountries } from "./services/apiService.js";   
-import type { Country } from "./models/Country";           
+import { fetchCountries } from "./services/apiService.js";
+import type { Country } from "./models/Country";
 
 const container = document.getElementById("container")!;
 const regionFilter = document.getElementById("region-filter");
 const searchInput = document.getElementById("search-input");
 
-
-
-
-
 let allCountries: Country[] = [];
-
 
 function createCountryCard(country: Country): HTMLElement {
   const card = document.createElement("div");
@@ -30,19 +25,14 @@ function createCountryCard(country: Country): HTMLElement {
   return card;
 }
 
-
-
-
-
 function renderList(countries: Country[]): void {
-  container.innerHTML = ""; 
+  container.innerHTML = "";
 
   countries.forEach((country) => {
     const card = createCountryCard(country);
     container.appendChild(card);
   });
 }
-
 
 function filterBySearch(countries: Country[], searchValue: string): Country[] {
   const term = searchValue.toLowerCase().trim();
@@ -54,34 +44,11 @@ function filterBySearch(countries: Country[], searchValue: string): Country[] {
   );
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
 function filterByRegion(countries: Country[], regionValue: string): Country[] {
   if (!regionValue) return countries;
 
   return countries.filter((country) => country.region === regionValue);
 }
-
-
-
-
-
-
-
-
-
-
-
 
 function applyFilters(): void {
   let filtered = [...allCountries];
@@ -92,27 +59,13 @@ function applyFilters(): void {
   renderList(filtered);
 }
 
-
-
-
-
-
-
-
-
-
-
-
 async function renderCountries() {
-
   const allcountries = await fetchCountries();
 
   renderList(allCountries);
 
-  countries.forEach((country) => {
-    const card = createCountryCard(country);
-    container.appendChild(card);
-  });
+  searchInput.addEventListener("input", applyFilters);
+  regionFilter.addEventListener("change", applyFilters);
 }
 
 renderCountries();
