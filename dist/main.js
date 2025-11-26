@@ -3,6 +3,9 @@ const container = document.getElementById("container");
 const regionFilter = document.getElementById("region-filter");
 const searchInput = document.getElementById("search-input");
 const toggleBtn = document.getElementById("toggle-btn");
+const modal = document.getElementById("country-modal");
+const modalBody = document.getElementById("modal-body");
+const modalCloseBtn = document.getElementById("modal-close");
 let allCountries = []; // Stores the full list of countries from the API so it can be reuse for filtering.
 //======================CARD CREATION=====================================
 /**
@@ -22,6 +25,10 @@ function createCountryCard(country) {
       <p><strong>Region:</strong> ${country.region}</p>
       <p><strong>Capital:</strong> ${country.capital?.[0] ?? "N/A"}</p>
     </div>`;
+    //open modal when the card is clicked
+    card.addEventListener("click", () => {
+        openCountryModal(country);
+    });
     return card; // Return the finished card so it can be added to the DOM
 }
 //===============RENDERING LIST==================
@@ -73,6 +80,59 @@ function setupThemeToggle() {
         }
         else {
             toggleBtn.innerHTML = `<i class="fa-regular fa-moon"></i> Dark Mode`;
+        }
+    });
+}
+//========================MODAL OPEN================================
+function openCountryModal(country) {
+    // Convert languages object → comma-separated list
+    const languageList = country.languages
+        ? Object.values(country.languages).join(", ")
+        : "N/A";
+    // Convert currencies object → list of currency names
+    const currencyList = country.currencies
+        ? Object.values(country.currencies)
+            .map((currencyDetails) => currencyDetails.name)
+            .join(", ")
+        : "N/A";
+    // Borders array → comma-separated list
+    const borderCountryCodes = country.borders?.length
+        ? country.borders.join(", ")
+        : "None";
+    // Write modal content
+    modalBody.innerHTML = `
+    <div class="modal-flag">
+      <img src="${country.flags.png}" alt="${country.flags.alt || country.name.common} flag" />
+    </div>
+
+    <div class="modal-info">
+      <h2>${country.name.common}</h2>
+
+      <p><strong>Population:</strong> ${country.population.toLocaleString()}</p>
+      <p><strong>Region:</strong> ${country.region}</p>
+      <p><strong>Sub Region:</strong> ${country.subregion ?? "N/A"}</p>
+      <p><strong>Capital:</strong> ${country.capital?.[0] ?? "N/A"}</p>
+      <p><strong>Currencies:</strong> ${currencyList}</p>
+      <p><strong>Languages:</strong> ${languageList}</p>
+      <p><strong>Borders:</strong> ${borderCountryCodes}</p>
+    </div>
+  `;
+    // Show modal
+    modal.classList.add("open");
+}
+//======================MODAL CLOSE================================
+function closeCountryModal() {
+    modal.classList.remove("open");
+}
+// Close modal when clicking the "Back" button
+if (modalCloseBtn) {
+    modalCloseBtn.addEventListener("click", closeCountryModal);
+}
+// Close modal when clicking on the dark backdrop (outside content)
+if (modal) {
+    modal.addEventListener("click", (event) => {
+        if (event.target === modal) {
+            closeCountryModal();
         }
     });
 }

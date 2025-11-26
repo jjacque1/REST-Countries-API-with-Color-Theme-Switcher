@@ -38,6 +38,12 @@ function createCountryCard(country: Country): HTMLElement {
       <p><strong>Capital:</strong> ${country.capital?.[0] ?? "N/A"}</p>
     </div>`;
 
+
+    //open modal when the card is clicked
+    card.addEventListener("click", () => {
+    openCountryModal(country);
+  });
+
   return card; // Return the finished card so it can be added to the DOM
 }
 
@@ -152,6 +158,26 @@ function openCountryModal(country: Country): void {
 
   // Show modal
   modal.classList.add("open");
+}
+
+//======================MODAL CLOSE================================
+
+function closeCountryModal(): void {
+  modal.classList.remove("open");
+}
+
+// Close modal when clicking the "Back" button
+if (modalCloseBtn) {
+  modalCloseBtn.addEventListener("click", closeCountryModal);
+}
+
+// Close modal when clicking on the dark backdrop (outside content)
+if (modal) {
+  modal.addEventListener("click", (event) => {
+    if (event.target === modal) {
+      closeCountryModal();
+    }
+  });
 }
 
 
