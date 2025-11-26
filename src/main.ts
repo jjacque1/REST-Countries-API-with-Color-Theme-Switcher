@@ -2,15 +2,14 @@ import { fetchCountries } from "./services/apiService.js";
 import type { Country } from "./models/Country";
 
 const container = document.getElementById("container")!;
-const regionFilter = document.getElementById(
-  "region-filter"
-) as HTMLButtonElement;
-const searchInput = document.getElementById(
-  "search-input"
-) as HTMLButtonElement;
+const regionFilter = document.getElementById("region-filter") as HTMLButtonElement;
+const searchInput = document.getElementById("search-input") as HTMLButtonElement;
 const toggleBtn = document.getElementById("toggle-btn") as HTMLButtonElement;
 
 
+const modal = document.getElementById("country-modal") as HTMLDivElement;
+const modalBody = document.getElementById("modal-body") as HTMLDivElement;
+const modalCloseBtn = document.getElementById("modal-close") as HTMLButtonElement;
 
 let allCountries: Country[] = []; // Stores the full list of countries from the API so it can be reuse for filtering.
 
@@ -108,6 +107,53 @@ function setupThemeToggle(): void {
     }
   });
 }
+
+
+//========================MODAL OPEN================================
+
+function openCountryModal(country: Country): void {
+  // Convert languages object → comma-separated list
+  const languageList = country.languages
+    ? Object.values(country.languages).join(", ")
+    : "N/A";
+
+  // Convert currencies object → list of currency names
+  const currencyList = country.currencies
+    ? Object.values(country.currencies)
+        .map((currencyDetails: { name: string }) => currencyDetails.name)
+        .join(", ")
+    : "N/A";
+
+  // Borders array → comma-separated list
+  const borderCountryCodes = country.borders?.length
+    ? country.borders.join(", ")
+    : "None";
+
+  // Write modal content
+  modalBody.innerHTML = `
+    <div class="modal-flag">
+      <img src="${country.flags.png}" alt="${
+        country.flags.alt || country.name.common
+      } flag" />
+    </div>
+
+    <div class="modal-info">
+      <h2>${country.name.common}</h2>
+
+      <p><strong>Population:</strong> ${country.population.toLocaleString()}</p>
+      <p><strong>Region:</strong> ${country.region}</p>
+      <p><strong>Sub Region:</strong> ${country.subregion ?? "N/A"}</p>
+      <p><strong>Capital:</strong> ${country.capital?.[0] ?? "N/A"}</p>
+      <p><strong>Currencies:</strong> ${currencyList}</p>
+      <p><strong>Languages:</strong> ${languageList}</p>
+      <p><strong>Borders:</strong> ${borderCountryCodes}</p>
+    </div>
+  `;
+
+  // Show modal
+  modal.classList.add("open");
+}
+
 
 //======================COMBINING BOTH=================================
 
