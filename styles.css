@@ -22,11 +22,47 @@ body > * {
   margin: 0 auto;
 }
 
+/* ================== THEME TOGGLE ================== */
+
+
+/* ================= DARK MODE OVERRIDES ================= */
+
+body.dark-mode {
+  background-color: #202c37;
+  color: #ffffff;
+}
+
+body.dark-mode .header {
+  background-color: #2b3945;
+  color: #ffffff;
+}
+
+body.dark-mode .toggle-btn {
+  color: #ffffff;
+}
+
+body.dark-mode .search-input,
+body.dark-mode #region-filter {
+  background-color: #2b3945;
+  color: #ffffff;
+  box-shadow: none;
+}
+
+body.dark-mode .search-input::placeholder {
+  color: #d3d3d3;
+}
+
+body.dark-mode .country-card {
+  background-color: #2b3945;
+  color: #ffffff;
+  box-shadow: none;
+}
+
 /* ================== HEADER ================== */
 
 .header {
   max-width: none !important;
-  width: 100vw;
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-around;

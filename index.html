@@ -10,12 +10,16 @@
 
     <!-- Styles -->
     <link rel="stylesheet" href="./styles.css" />
+
+    <!--Font awesome icon link-->
     <script
       src="https://kit.fontawesome.com/a84b1620d5.js"
       crossorigin="anonymous"
     ></script>
   </head>
   <body>
+    <!--HEADER-->
+
     <header class="header">
       <h1 class="title">Where in the world?</h1>
       <button id="toggle-btn" class="toggle-btn">
@@ -23,7 +27,11 @@
       </button>
     </header>
 
+    <!--MAIN SECTION-->
+
     <section class="search-filter">
+      <!--SEARCH INPUT SECTION-->
+
       <div class="input-container">
         <input
           type="text"
@@ -35,6 +43,8 @@
         <i class="fa-solid fa-magnifying-glass"></i>
       </div>
 
+      <!--FILTER SECTTION-->
+
       <select id="region-filter" aria-label="Filter by region">
         <option value="">Filter by Region</option>
         <option value="Africa">Africa</option>
@@ -44,6 +54,8 @@
         <option value="Oceania">Oceania</option>
       </select>
     </section>
+
+    <!--COUNTRY CARD CONTAINER-->
 
     <div id="container"></div>
   </body>

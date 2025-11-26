@@ -2,8 +2,15 @@ import { fetchCountries } from "./services/apiService.js";
 import type { Country } from "./models/Country";
 
 const container = document.getElementById("container")!;
-const regionFilter = document.getElementById("region-filter")!;
-const searchInput = document.getElementById("search-input")!;
+const regionFilter = document.getElementById(
+  "region-filter"
+) as HTMLButtonElement;
+const searchInput = document.getElementById(
+  "search-input"
+) as HTMLButtonElement;
+const toggleBtn = document.getElementById("toggle-btn") as HTMLButtonElement;
+
+
 
 let allCountries: Country[] = []; // Stores the full list of countries from the API so it can be reuse for filtering.
 
@@ -84,6 +91,24 @@ function filterByRegion(countries: Country[], regionValue: string): Country[] {
   return countries.filter((country) => country.region === regionValue);
 }
 
+//======================THEME TOGGLE=================================
+
+function setupThemeToggle(): void {
+  if (!toggleBtn) return;
+
+  toggleBtn.addEventListener("click", () => {
+    // Toggle the "dark-mode" class on the <body>
+    const isDark = document.body.classList.toggle("dark-mode");
+
+    // Update button text + icon
+    if (isDark) {
+      toggleBtn.innerHTML = `<i class="fa-regular fa-sun"></i> Light Mode`;
+    } else {
+      toggleBtn.innerHTML = `<i class="fa-regular fa-moon"></i> Dark Mode`;
+    }
+  });
+}
+
 //======================COMBINING BOTH=================================
 
 /**
@@ -113,6 +138,11 @@ async function renderCountries() {
 
   searchInput.addEventListener("input", applyFilters); // Whenever the user types, update results
   regionFilter.addEventListener("change", applyFilters); // Whenever the region dropdown changes, update results
+
+
+// set up dark / light mode toggle
+  setupThemeToggle();
+
 }
 
 renderCountries(); // Start the entire application
