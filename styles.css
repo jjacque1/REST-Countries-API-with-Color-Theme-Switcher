@@ -87,6 +87,11 @@ body.dark-mode .country-card {
   align-items: center;
   gap: 0.5rem;
   color: hsl(200, 15%, 8%);
+  transition: all 300ms ease-in-out;
+}
+
+.toggle-bth:hover {
+  background-color: #ddd;
 }
 
 .toggle-btn i {
