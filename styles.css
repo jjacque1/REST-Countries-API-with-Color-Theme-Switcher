@@ -1,91 +1,199 @@
+/* ================== GLOBAL RESET & BASE ================== */
+
 * {
-  padding: 0;
   margin: 0;
+  padding: 0;
   box-sizing: border-box;
-  font-family: sans-serif;
 }
 
-/* =================HEADER======================= */
+html {
+  font-size: 16px;
+}
+
+body {
+  min-height: 100vh;
+  font-family: "Nunito Sans", system-ui, "Segoe UI", sans-serif;
+  background-color: hsl(0, 0%, 98%);
+  color: hsl(200, 15%, 8%);
+}
+
+body > * {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* ================== HEADER ================== */
 
 .header {
+  max-width: none !important;
+  width: 100vw;
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  border-bottom: 4px solid #ddd;
-  padding: 16px 60px;
+  justify-content: space-around;
+  padding: 1.5rem 0;
+  margin-bottom: 1.5rem;
+  background-color: hsl(0, 0%, 100%);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.06);
 }
 
-.fa-moon {
-  margin-right: 8px;
-}
-
-.fa-moon,
-.toggle-btn {
-  font-size: large;
-  font-weight: 400;
+.title {
+  font-size: 1.25rem;
+  font-weight: 800;
 }
 
 .toggle-btn {
   border: none;
-  background-color: #fff;
-  transition: all 300ms ease-in-out;
+  background: none;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: hsl(200, 15%, 8%);
 }
 
-.toggle-btn:hover {
-  color: #ddd;
+.toggle-btn i {
+  font-size: 1rem;
 }
 
-.title {
-  font-weight: bolder;
-}
-
-/* =================FILTERS & SEARCH======================= */
+/* ================== SEARCH & FILTER BAR ================== */
 
 .search-filter {
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  padding: 24px 100px;
+  justify-content: space-between;
+  margin-bottom: 2.5rem;
 }
 
 .input-container {
   position: relative;
   width: 100%;
-  max-width: 300px;
+  max-width: 400px;
 }
 
 .input-container i {
   position: absolute;
   top: 50%;
-  left: 16px;
+  left: 1.25rem;
   transform: translateY(-50%);
-  font-size: 1rem;
+  font-size: 0.95rem;
+  color: hsl(0, 0%, 70%);
 }
 
 .search-input {
-    outline: none;
   width: 100%;
-  padding: 12px 16px 12px 48px;
-  font-size: 1rem;
+  padding: 0.9rem 1rem 0.9rem 3rem; 
   border: none;
   border-radius: 6px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  font-size: 0.9rem;
+  background-color: hsl(0, 0%, 100%);
+  box-shadow: 0 2px 9px rgba(0, 0, 0, 0.05);
+  outline: none;
+  color: hsl(200, 15%, 8%);
 }
+
+.search-input::placeholder {
+  color: hsl(0, 0%, 70%);
+}
+
+/* Region dropdown */
 
 #region-filter {
-  font-weight: 500;
-  padding: 12px 16px;
+  min-width: 200px;
+  padding: 0.9rem 1rem;
   border: none;
   border-radius: 6px;
-  font-size: 1rem;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  background-color: hsl(0, 0%, 100%);
+  box-shadow: 0 2px 9px rgba(0, 0, 0, 0.05);
+  font-size: 0.9rem;
+  color: hsl(200, 15%, 8%);
   cursor: pointer;
   outline: none;
-  width: 200px;
 }
 
-/* =================MAIN======================= */
+/* ================== COUNTRIES GRID ================== */
 
 #container {
-  margin-top: 60px;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr)); /* 4 columns desktop */
+  gap: 2.5rem;
+  padding-bottom: 3rem;
+}
+
+/* Country card */
+.country-card {
+  background-color: hsl(0, 0%, 100%);
+  border-radius: 6px;
+  overflow: hidden;
+  box-shadow: 0 2px 9px rgba(0, 0, 0, 0.05);
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+/* Hover effect */
+.country-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+}
+
+/* Flag image */
+.country-card img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+}
+
+/* Card content */
+.card-body {
+  padding: 1.5rem 1.5rem 2rem;
+}
+
+.card-body h2 {
+  font-size: 1rem;
+  font-weight: 800;
+  margin-bottom: 0.75rem;
+}
+
+.card-body p {
+  font-size: 0.9rem;
+  margin-bottom: 0.3rem;
+}
+
+.card-body p strong {
+  font-weight: 600;
+}
+
+/* ================== RESPONSIVE ================== */
+
+@media (max-width: 1024px) {
+  #container {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+  body > * {
+    padding: 0 1.5rem;
+  }
+
+  .header {
+    padding-inline: 0;
+  }
+
+  .search-filter {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.5rem;
+  }
+
+  #container {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 600px) {
+  #container {
+    grid-template-columns: 1fr;
+  }
 }
