@@ -8,23 +8,21 @@ const modalBody = document.getElementById("modal-body");
 const modalCloseBtn = document.getElementById("modal-close");
 let allCountries = []; // Stores the full list of countries from the API so it can be reuse for filtering.
 //======================CARD CREATION=====================================
-/**
- * Function Creates a single country card element.
- * Takes a Country object and returns a <div> element containing the country's info.
- */
 function createCountryCard(country) {
     const card = document.createElement("div"); // Create a new <div>
     card.className = "country-card"; // Add the CSS class for styling
     // Build the inner HTML for the card using template literals.
     // Includes: flag image, country name, population, region, and capital.
     card.innerHTML = `
+    <img class="card-flag" src="${country.flags.png}" alt="${country.flags.alt || country.name.common} flag">
+
     <div class="card-body">
-    <img src="${country.flags.png}" alt="${country.flags.alt || country.name.common} flag">
       <h2>${country.name.common}</h2>
       <p><strong>Population:</strong> ${country.population.toLocaleString()}</p>
       <p><strong>Region:</strong> ${country.region}</p>
       <p><strong>Capital:</strong> ${country.capital?.[0] ?? "N/A"}</p>
-    </div>`;
+    </div>
+`;
     //open modal when the card is clicked
     card.addEventListener("click", () => {
         openCountryModal(country);
@@ -63,7 +61,7 @@ function filterBySearch(countries, searchValue) {
  */
 function filterByRegion(countries, regionValue) {
     if (!regionValue)
-        return countries; // No region selected → return all
+        return countries; // No region selected => return all
     // Keep only countries with matching region value
     return countries.filter((country) => country.region === regionValue);
 }
@@ -74,7 +72,7 @@ function setupThemeToggle() {
     toggleBtn.addEventListener("click", () => {
         // Toggle the "dark-mode" class on the <body>
         const isDark = document.body.classList.toggle("dark-mode");
-        // Update button text + icon
+        // Update button text and fun awesome icon
         if (isDark) {
             toggleBtn.innerHTML = `<i class="fa-regular fa-sun"></i> Light Mode`;
         }

@@ -254,7 +254,7 @@ body.dark-mode .country-card {
 }
 
 .modal-flag img {
-  width: 260px;
+  width: 100%;
   max-width: 100%;
   display: block;
   border-radius: 4px;

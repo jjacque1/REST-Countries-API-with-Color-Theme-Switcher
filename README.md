@@ -1,63 +1,164 @@
-# Frontend Mentor - REST Countries API with color theme switcher
+# Title
 
-![Design preview for the REST Countries API with color theme switcher coding challenge](./design/desktop-preview.jpg)
+Frontend Mentor - REST Countries API with color theme switcher
 
 ## The challenge
 
-Your challenge is to integrate with the [REST Countries API](https://restcountries.com) to pull country data and display it like in the designs.
+This project is a TypeScript application that fetches real country data from the REST Countries API, displays each country in a responsive UI, supports dynamic search and region filtering, includes an interactive country details modal, and allows users to switch between light and dark themes.
 
-You can use any JavaScript framework/library on the front-end such as [React](https://reactjs.org) or [Vue](https://vuejs.org). You also have complete control over which packages you use to do things like make HTTP requests or style your project.
+## Project Goal
 
-Your users should be able to:
+TypeScript fundamentals
 
-- See all countries from the API on the homepage
-- Search for a country using an `input` field
-- Filter countries by region
-- Click on a country to see more detailed information on a separate page
-- Click through to the border countries on the detail page
-- Toggle the color scheme between light and dark mode *(optional)*
+DOM manipulation using TypeScript
 
-Want some support on the challenge? [Join our community](https://www.frontendmentor.io/community) and ask questions in the **#help** channel.
+Object-oriented structuring of data
+
+Asynchronous API requests
+
+Error handling
+
+Responsive web design
+
+## Getting Started
+
+Base URL:
+
+"https://restcountries.com/v3.1/all"
+
+"https://restcountries.com/v3.1/all?fields=name,population,region,capital,flags,subregion,currencies,languages,borders"
+
+Fields Used:
+
+name
+population
+region
+capital
+flags
+subregion
+currencies
+languages
+borders
+
+## Project Requirement
+
+1. API Integration
+
+   - Fetches all countries using an async/await API service.
+   - Handles errors using try/catch.
+   - Returns only the selected fields from the API
+
+2. TypeScript Models
+
+   - A Country model defines the shape of every country object.
+   - Ensure type throughout the project.
+
+3. UI Features
+
+   - Country cards rendered dynamically from API data.
+   - Responsive grid layout for desktop/tablet/mobile.
+   - Search bar to filter countries by name.
+   - Dropdown filter to filter by region.
+   - Click any country to open a modal with expanded details.
+
+4. Modal System
+
+   - Each modal displays:
+     Flag
+
+   Name
+
+   Population
+
+   Region
+
+   Subregion
+
+   Capital
+
+   Currencies
+
+   Languages
+
+   Border countries
+
+5. Dark / Light Theme Switcher
+   Toggle button updates:
+
+   Background colors
+
+   Text colors
+
+   Inputs & dropdowns
+
+   Buttons
+
+   Country cards
+
+## Testing and Validation
+
+1. Inside apiService.ts, fetchCountries() logs the raw API response.
+
+2. Compile TypeScript with npx tsc
+
+3. Run Project with Live Server 
+
+4. Test Error Handling => Break the API URL on purpose with wrong url
+
+5. Ensure clear error message prints in the console
 
 
-## Where to find everything
+## Challenges 
 
-## Building your project
-
-
-1. Initialize your project as a public repository on [GitHub](https://github.com/). Creating a repo will make it easier to share your code with the community if you need help. If you're not sure how to do this, [have a read-through of this Try Git resource](https://try.github.io/).
-2. Configure your repository to publish your code to a web address. This will also be useful if you need some help during a challenge as you can share the URL for your project with your repo URL. There are a number of ways to do this, and we provide some recommendations below.
-3. Look through the designs to start planning out how you'll tackle the project. This step is crucial to help you think ahead for CSS classes to create reusable styles.
-4. Before adding any styles, structure your content with HTML. Writing your HTML first can help focus your attention on creating well-structured content.
-5. Write out the base styles for your project, including general content styles, such as `font-family` and `font-size`.
-6. Start adding styles to the top of the page and work down. Only move on to the next section once you're happy you've completed the area you're working on.
-
-## Deploying your project
-
-As mentioned above, there are many ways to host your project for free. Our recommended hosts are:
-
-- [GitHub Pages](https://pages.github.com/)
-- [Vercel](https://vercel.com/)
-- [Netlify](https://www.netlify.com/)
-
-You can host your site using one of these solutions or any of our other trusted providers. [Read more about our recommended and trusted hosts](https://medium.com/frontend-mentor/frontend-mentor-trusted-hosting-providers-bf000dfebe).
-
-## Create a custom `README.md`
-
-We strongly recommend overwriting this `README.md` with a custom one. We've provided a template inside the [`README-template.md`](./README-template.md) file in this starter code.
-
-The template provides a guide for what to add. A custom `README` will help you explain your project and reflect on your learnings. Please feel free to edit our template as much as you like.
-
-Once you've added your information to the template, delete this file and rename the `README-template.md` file to `README.md`. That will make it show up as your repository's README file.
-
-## Submitting your solution
-
-Submit your solution on the platform for the rest of the community to see. Follow our ["Complete guide to submitting solutions"](https://medium.com/frontend-mentor/a-complete-guide-to-submitting-solutions-on-frontend-mentor-ac6384162248) for tips on how to do this.
-
-Remember, if you're looking for feedback on your solution, be sure to ask questions when submitting it. The more specific and detailed you are with your questions, the higher the chance you'll get valuable feedback from the community.
-
-## Sharing your solution
+One of the biggest challenges in this project was working with deeply nested and inconsistently structured data from the REST Countries API. Properties like languages, currencies, and borders were objects or arrays with varying structures, which made it difficult to convert them into clean, readable strings for the modal. Another challenge involved configuring TypeScript  ensuring that imports, exports, and module resolution behaved correctly. I also struggled initially with organizing the project into a maintainable folder structure and keeping the compiled JavaScript files aligned with their TypeScript sources. Through reading API documentation, experimenting with different TypeScript settings, and simplifying my approach to DOM rendering and event handling, I was able to resolve these issues. Breaking problems into smaller steps and converting complex API objects manually with beginner-friendly loops made the data much easier to work with. In the end, careful debugging, incremental testing, and adjusting my architecture helped the project come together smoothly.
 
 
+## Reflection
+
+Working on this project allowed me to apply TypeScript and front-end development concepts in a deeper, more practical way. I gained a much stronger understanding of how TypeScript’s type system helps structure real data coming from an API, especially when dealing with complex objects like countries, languages, currencies, and borders. I also learned how helpful interfaces are for shaping API responses and preventing common runtime errors. Building reusable functions for filtering, rendering, and opening modals reinforced the importance of clean separation of concerns. Implementing dark mode taught me how simple UI state changes can be handled with class toggling, while creating the modal helped me practice DOM manipulation and event-driven programming. Overall, this project strengthened my confidence in working with asynchronous operations, API-driven UI updates, and TypeScript-based project organization. It also showed me how planning, breaking tasks into steps, and testing each feature individually leads to a smoother and more maintainable development process.
+
+
+
+## Acknowledgement
+
+https://www.frontendmentor.io/challenges/rest-countries-api-with-color-theme-switcher-5cacc469fec04111f7b848ca
+
+https://ps-lms.vercel.app/curriculum/se/410/lesson-3
+
+https://perscholas.instructure.com/courses/2978/pages/module-5-the-document-object-model
+
+https://perscholas.instructure.com/courses/2978/assignments/577957?module_item_id=2378283
+
+https://www.w3schools.com/jsref/jsref_tolocalestring_number.asp
+
+https://www.google.com/search?q=as+htmlelement+typescript&sca_esv=8d6b71ab7ddbac70&sxsrf=AE3TifM3Ui7hLk2cGCA5P5jxTF5BT4517g%3A1764217276614&source=hp&ei=vNEnabT7IqqvwbkP0LmtMA&iflsig=AOw8s4IAAAAAaSffzEuycnl24HmBABM9xVZ521wIYmEX&oq=as+HTMLElement&gs_lp=Egdnd3Mtd2l6Ig5hcyBIVE1MRWxlbWVudCoCCAAyBhAAGBYYHjIGEAAYFhgeMgYQABgWGB4yBhAAGBYYHjIGEAAYFhgeMgYQABgWGB4yBhAAGBYYHjIGEAAYFhgeMgYQABgWGB4yBhAAGBYYHkibGlDtC1jtC3ABeACQAQCYAa8BoAGvAaoBAzAuMbgBAcgBAPgBAvgBAZgCAqACwwGoAgrCAg0QIxiABBgnGIoFGOoCwgIHECMYJxjqAsICDRAuGIAEGCcYigUY6gKYAxDiAwQYACBd4gMEGAAgXuIDBBgAIF_iAwQYACBg4gMEGAAgYeIDBBgAIGLxBeQ8e-FCyj27kgcDMS4xoAfeBbIHAzAuMbgHswHCBwUyLTEuMcgHEQ&sclient=gws-wiz
+
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/includes
+
+https://www.w3schools.com/jsref/jsref_includes_array.asp
+
+https://www.google.com/search?q=.includes+typescript&sca_esv=8d6b71ab7ddbac70&sxsrf=AE3TifMQBvRWVd7rdY1otlm5lLbS8H4KuA%3A1764217377950&ei=IdInadnfOcXfwN4Pla2wkAk&oq=.includes&gs_lp=Egxnd3Mtd2l6LXNlcnAiCS5pbmNsdWRlcyoCCAEyBRAAGIAEMgoQABiABBgUGIcCMgUQABiABDIFEAAYgAQyBRAAGIAEMgUQABiABDIFEAAYgAQyBRAAGIAEMgUQABiABDIFEAAYgARI8CRQog5Yog5wAngBkAEAmAFEoAFEqgEBMbgBAcgBAPgBAfgBApgCA6ACfagCEMICDRAjGIAEGCcYigUY6gLCAgcQIxgnGOoCwgINEC4YgAQYJxiKBRjqAsICFxAAGIAEGJECGLQCGOcGGIoFGOoC2AEBmAMk4gMEGAAgXeIDBBgAIF7iAwQYACBf4gMEGAAgYOIDBBgAIGHiAwQYACBi8QVoew7P3woFVboGBggBEAEYAZIHATOgB4sHsgcBMbgHTsIHBTMtMi4xyAcy&sclient=gws-wiz-serp
+
+https://www.google.com/search?q=.filter+typescript&sca_esv=8d6b71ab7ddbac70&sxsrf=AE3TifMfAHWeo-B48suwxrKQBxWR-bJ4-g%3A1764217431408&ei=V9InacrhGKurp84PmMz22QM&oq=.filter&gs_lp=Egxnd3Mtd2l6LXNlcnAaAhgBIgcuZmlsdGVyKgIIATIFEAAYgAQyChAAGIAEGBQYhwIyBRAAGIAEMgUQABiABDIFEAAYgAQyBRAAGIAEMgUQABiABDIOEAAY5AYYiwMY3QbYAQIyDhAAGOQGGIsDGN0G2AECMg4QABjkBhiLAxjdBtgBAkiP6AFQntQBWJ7UAXACeACQAQCYAZwBoAGcAaoBAzAuMbgBAcgBAPgBAfgBApgCA6ACwQGoAhDCAg0QIxiABBgnGIoFGOoCwgIHECMYJxjqAsICDRAuGIAEGCcYigUY6gLCAhcQABiABBiRAhi0AhjnBhiKBRjqAtgBAZgDDOIDBBgBIF3iAwQYASBe4gMEGAAgX-IDBBgAIGDiAwQYACBh4gMEGAAgYvEFFgfP3sCuRry6BgYIARABGAG6BgQIAhgekgcDMi4xoAf6DLIHAzAuMbgHpAHCBwUyLTEuMsgHIA&sclient=gws-wiz-serp
+
+https://www.w3schools.com/jsref/jsref_filter.asp
+
+https://www.google.com/search?q=.join+typescript&sca_esv=8d6b71ab7ddbac70&sxsrf=AE3TifO9PIjI8ovepym23AktDHhyVxTZUQ%3A1764217502049&ei=ntInadPVAvC4wN4P7urUsAM&oq=.join&gs_lp=Egxnd3Mtd2l6LXNlcnAiBS5qb2luKgIIADIKEAAYgAQYFBiHAjIFEAAYgAQyBRAAGIAEMgUQABiABDIIEAAYgAQYsQMyBRAAGIAEMgUQABiABDIFEAAYgAQyBRAAGIAEMgUQABiABEjjFFD4CVj4CXABeACQAQCYAVagAVaqAQExuAEByAEA-AEB-AECmAICoAJxqAIQwgINECMYgAQYJxiKBRjqAsICBxAjGCcY6gLCAg0QLhiABBgnGIoFGOoCwgIXEAAYgAQYkQIYtAIY5wYYigUY6gLYAQGYAxXiAwQYACBd4gMEGAAgXuIDBBgAIF_iAwQYACBg4gMEGAAgYeIDBBgAIGLxBVsbk4shCHZPugYGCAEQARgBkgcBMqAH6AayBwExuAdcwgcFMi0xLjHIBxc&sclient=gws-wiz-serp
+
+https://www.w3schools.com/jsref/jsref_join.asp
+
+https://www.google.com/search?q=+Object.values&sca_esv=8d6b71ab7ddbac70&sxsrf=AE3TifPdf4_4y-EgKWSUwZTx2e8u4793Qg%3A1764217555221&ei=09InadGmDbG-p84PjIHV8Ag&ved=0ahUKEwiR3L3FvpGRAxUx38kDHYxAFY4Q4dUDCBM&uact=5&oq=+Object.values&gs_lp=Egxnd3Mtd2l6LXNlcnAiDiBPYmplY3QudmFsdWVzMgsQABiABBiRAhiKBTILEAAYgAQYkQIYigUyCxAAGIAEGJECGIoFMgUQABiABDIFEAAYgAQyBRAAGIAEMgUQABiABDIFEAAYgAQyBRAAGIAEMgsQABiABBiRAhiKBUiCEVDeC1jeC3ACeACQAQCYAY0BoAGNAaoBAzAuMbgBA8gBAPgBAfgBApgCA6ACqgGoAhDCAg0QIxiABBgnGIoFGOoCwgIHECMYJxjqAsICDRAuGIAEGCcYigUY6gLCAhcQABiABBiRAhi0AhjnBhiKBRjqAtgBAZgDEOIDBBgAIF3iAwQYACBe4gMEGAAgX-IDBBgAIGDiAwQYACBh4gMEGAAgYvEF8lY7CgxEoOi6BgYIARABGAGSBwMyLjGgB7gHsgcDMC4xuAeSAcIHBTItMi4xyAcZ&sclient=gws-wiz-serp
+
+https://www.w3schools.com/jsref/jsref_object_values.asp
+
+https://www.youtube.com/watch?v=tYdlt9q6Iug
+
+https://www.w3schools.com/react/react_es6_spread.asp
+
+https://www.google.com/search?q=spread+operator+in+javascript&sca_esv=8d6b71ab7ddbac70&sxsrf=AE3TifMThNtPAnRWFWFN8lzPG2JVlkx6fg%3A1764217992061&ei=iNQnaaLAA-iKwbkP6b6rsAI&oq=spre&gs_lp=Egxnd3Mtd2l6LXNlcnAiBHNwcmUqAggAMgoQABiABBhDGIoFMgoQABiABBhDGIoFMggQABiABBixAzIOEC4YgAQYxwEYjgUYrwEyChAAGIAEGEMYigUyCxAuGIAEGLEDGIMBMgoQABiABBhDGIoFMgoQABiABBhDGIoFMhAQABiABBixAxhDGIMBGIoFMggQABiABBixA0jqQFC1CliQGnAFeAGQAQGYAbgBoAHOB6oBAzMuNbgBAcgBAPgBAZgCDKACnQeoAhDCAg0QIxiABBgnGIoFGOoCwgIHECMYJxjqAsICFxAAGIAEGJECGLQCGOcGGIoFGOoC2AEBwgIKECMYgAQYJxiKBcICBBAjGCfCAg4QABiABBixAxiDARiKBcICCxAAGIAEGLEDGIMBwgIKEC4YgAQYQxiKBcICFhAuGIAEGLEDGNEDGEMYgwEYxwEYigXCAg0QABiABBixAxhDGIoFwgIOEC4YgAQYsQMY0QMYxwHCAggQLhiABBixA8ICDhAuGIAEGLEDGIMBGIoFwgIPEAAYgAQYsQMYgwEYChgLwgIMEAAYgAQYsQMYChgLwgIPEC4YgAQY0QMYxwEYChgLwgIMEC4YgAQYsQMYChgLwgIPEC4YgAQYsQMYgwEYChgLmAMO4gMEGAAgXeIDBBgAIF7iAwQYACBf4gMEGAAgYOIDBBgAIGHiAwQYACBi8QXAGPMECS4AcboGBggBEAEYAZIHAzcuNaAHoFiyBwMyLjW4B_kGwgcGMi0xMS4xyAc_&sclient=gws-wiz-serp
+
+
+
+## My Solution
 
 

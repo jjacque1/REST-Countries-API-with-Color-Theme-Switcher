@@ -1,24 +1,20 @@
 import { fetchCountries } from "./services/apiService.js";
 import type { Country } from "./models/Country";
 
-const container = document.getElementById("container")!;
-const regionFilter = document.getElementById("region-filter") as HTMLButtonElement;
-const searchInput = document.getElementById("search-input") as HTMLButtonElement;
-const toggleBtn = document.getElementById("toggle-btn") as HTMLButtonElement;
+const container = document.getElementById("container")as HTMLElement;
+const regionFilter = document.getElementById("region-filter")as HTMLElement;
+const searchInput = document.getElementById("search-input")as HTMLElement;
+const toggleBtn = document.getElementById("toggle-btn")as HTMLElement;
 
-
-const modal = document.getElementById("country-modal") as HTMLDivElement;
-const modalBody = document.getElementById("modal-body") as HTMLDivElement;
-const modalCloseBtn = document.getElementById("modal-close") as HTMLButtonElement;
+const modal = document.getElementById("country-modal")as HTMLElement;
+const modalBody = document.getElementById("modal-body")as HTMLElement;
+const modalCloseBtn = document.getElementById("modal-close") as HTMLElement;
 
 let allCountries: Country[] = []; // Stores the full list of countries from the API so it can be reuse for filtering.
 
 //======================CARD CREATION=====================================
 
-/**
- * Function Creates a single country card element.
- * Takes a Country object and returns a <div> element containing the country's info.
- */
+
 
 function createCountryCard(country: Country): HTMLElement {
   const card = document.createElement("div"); // Create a new <div>
@@ -28,19 +24,19 @@ function createCountryCard(country: Country): HTMLElement {
   // Build the inner HTML for the card using template literals.
   // Includes: flag image, country name, population, region, and capital.
   card.innerHTML = `
+    <img class="card-flag" src="${country.flags.png}" alt="${country.flags.alt || country.name.common} flag">
+
     <div class="card-body">
-    <img src="${country.flags.png}" alt="${
-    country.flags.alt || country.name.common
-  } flag">
       <h2>${country.name.common}</h2>
       <p><strong>Population:</strong> ${country.population.toLocaleString()}</p>
       <p><strong>Region:</strong> ${country.region}</p>
       <p><strong>Capital:</strong> ${country.capital?.[0] ?? "N/A"}</p>
-    </div>`;
+    </div>
+`;
 
 
-    //open modal when the card is clicked
-    card.addEventListener("click", () => {
+  //open modal when the card is clicked
+  card.addEventListener("click", () => {
     openCountryModal(country);
   });
 
@@ -65,11 +61,7 @@ function renderList(countries: Country[]): void {
 }
 
 //================SEARCH FILTER BY NAME===============
-
-/**
- * Filters the country list by the search input.
- * Returns only countries whose names include the typed search value.
- */
+ 
 
 function filterBySearch(countries: Country[], searchValue: string): Country[] {
   const term = searchValue.toLowerCase().trim(); // Normalize search text
@@ -84,13 +76,9 @@ function filterBySearch(countries: Country[], searchValue: string): Country[] {
 
 //=====================REGION FILTER==========================
 
-/**
- * Filters countries by the selected region.
- * If no region selected, returns the full array.
- */
 
 function filterByRegion(countries: Country[], regionValue: string): Country[] {
-  if (!regionValue) return countries; // No region selected → return all
+  if (!regionValue) return countries; // No region selected => return all
 
   // Keep only countries with matching region value
   return countries.filter((country) => country.region === regionValue);
@@ -105,7 +93,7 @@ function setupThemeToggle(): void {
     // Toggle the "dark-mode" class on the <body>
     const isDark = document.body.classList.toggle("dark-mode");
 
-    // Update button text + icon
+    // Update button text and fun awesome icon
     if (isDark) {
       toggleBtn.innerHTML = `<i class="fa-regular fa-sun"></i> Light Mode`;
     } else {
@@ -113,7 +101,6 @@ function setupThemeToggle(): void {
     }
   });
 }
-
 
 //========================MODAL OPEN================================
 
@@ -139,8 +126,8 @@ function openCountryModal(country: Country): void {
   modalBody.innerHTML = `
     <div class="modal-flag">
       <img src="${country.flags.png}" alt="${
-        country.flags.alt || country.name.common
-      } flag" />
+    country.flags.alt || country.name.common
+  } flag" />
     </div>
 
     <div class="modal-info">
@@ -180,7 +167,6 @@ if (modal) {
   });
 }
 
-
 //======================COMBINING BOTH=================================
 
 /**
@@ -211,10 +197,8 @@ async function renderCountries() {
   searchInput.addEventListener("input", applyFilters); // Whenever the user types, update results
   regionFilter.addEventListener("change", applyFilters); // Whenever the region dropdown changes, update results
 
-
-// set up dark / light mode toggle
+  // set up dark / light mode toggle
   setupThemeToggle();
-
 }
 
 renderCountries(); // Start the entire application
