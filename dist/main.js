@@ -43,10 +43,6 @@ function renderList(countries) {
     });
 }
 //================SEARCH FILTER BY NAME===============
-/**
- * Filters the country list by the search input.
- * Returns only countries whose names include the typed search value.
- */
 function filterBySearch(countries, searchValue) {
     const term = searchValue.toLowerCase().trim(); // Normalize search text
     if (!term)
@@ -55,10 +51,6 @@ function filterBySearch(countries, searchValue) {
     return countries.filter((country) => country.name.common.toLowerCase().includes(term));
 }
 //=====================REGION FILTER==========================
-/**
- * Filters countries by the selected region.
- * If no region selected, returns the full array.
- */
 function filterByRegion(countries, regionValue) {
     if (!regionValue)
         return countries; // No region selected => return all
